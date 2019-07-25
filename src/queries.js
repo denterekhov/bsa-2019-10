@@ -7,14 +7,35 @@ export const POST_QUERY = gql`
         id
         createdAt
         text
-        postLikeCount 
-        postDislikeCount 
+        likeCount 
+        dislikeCount 
         replies {
           id
           createdAt
           text
-          replyLikeCount 
-          replyDislikeCount 
+          likeCount 
+          dislikeCount 
+        }
+      }
+    }
+  }
+`;
+
+export const SEARCH_QUERY = gql`
+  query findPost($filter: String!, $orderBy: PostOrderByInput) {
+    posts(filter: $filter, orderBy: $orderBy) {
+      postList {
+        id
+        createdAt
+        text
+        likeCount 
+        dislikeCount 
+        replies {
+          id
+          createdAt
+          text
+          likeCount 
+          dislikeCount 
         }
       }
     }
@@ -27,14 +48,14 @@ export const POST_POST_MUTATION = gql`
       id
       createdAt
       text
-      postLikeCount 
-      postDislikeCount 
+      likeCount 
+      dislikeCount 
       replies {
         id
         createdAt
         text
-        replyLikeCount 
-        replyDislikeCount 
+        likeCount 
+        dislikeCount 
       }
     }
   }
@@ -46,23 +67,17 @@ export const POST_REPLY_MUTATION = gql`
       id
       createdAt
       text
-      replyLikeCount 
-      replyDislikeCount 
+      likeCount 
+      dislikeCount 
     }
   }
 `;
 
-// export const POST_LIKE_INCREMENT_MUTATION = gql`
-//   mutation PostMutation($postId: ID!, $text: String!) {
-//     postReply(postId: $postId, text: $text) {
-//       id
-//       createdAt
-//       text
-//       replyLikeCount 
-//       replyDislikeCount 
-//     }
-//   }
-// `;
+export const LIKE_MUTATION = gql`
+  mutation LikeMutation($id: ID!, $likeCount: Int!) {
+    postLike(id: $id, likeCount: $likeCount)
+  }
+`;
 
 export const NEW_POSTS_SUBSCRIPTION = gql`
   subscription {
@@ -70,14 +85,14 @@ export const NEW_POSTS_SUBSCRIPTION = gql`
       id
       createdAt
       text
-      postLikeCount 
-      postDislikeCount 
+      likeCount 
+      dislikeCount 
       replies {
         id
         createdAt
         text
-        replyLikeCount 
-        replyDislikeCount 
+        likeCount 
+        dislikeCount 
       }
     }
   }

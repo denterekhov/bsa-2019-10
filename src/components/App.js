@@ -4,10 +4,10 @@ import { Container, Input } from 'semantic-ui-react';
 
 import PostForm from './Post/PostForm';
 import PostItem from './Post/PostItem';
-import { POST_QUERY, NEW_POSTS_SUBSCRIPTION } from '../queries';
+import { POST_QUERY, SEARCH_QUERY, NEW_POSTS_SUBSCRIPTION } from '../queries';
 
 const App = props => {
-  const [text, setText] = useState('');
+  const [search, setSearch] = useState('');
   const orderBy = 'createdAt_DESC';
 
   const _subscribeToNewPosts = subscribeToMore => {
@@ -27,32 +27,43 @@ const App = props => {
     });
   };
 
-  const filterPosts = data => data.filter(post => {
-    return post.text.toLocaleLowerCase().includes(text.toLocaleLowerCase());
-  })
-
   return (
     <Container text>
-      <Input value={text} onChange={(e) => setText(e.target.value)} fluid/>
-      <Query query={POST_QUERY} variables={{ orderBy }}>
-        {({ loading, error, data, subscribeToMore }) => {
-          if (loading) return <div>Loading...</div>;
-          if (error) return <div>Fetch error</div>;
-          _subscribeToNewPosts(subscribeToMore);
-          const { posts: { postList } } = data;
-        
-          const filteredPosts = text ? filterPosts(postList) : postList;
+      <Input placeholder="Enter text to filter" value={search} onChange={(e) => setSearch(e.target.value)} fluid/>
 
-          return (
-            <div>
-              {filteredPosts.map(item => {
-                return <PostItem key={item.id} {...item} />
-              })}
-              <PostForm />
-            </div>
-          );
-        }}
-      </Query>
+      {!search
+        ? <Query query={POST_QUERY} variables={{ orderBy }}>
+            {({ loading, error, data, subscribeToMore }) => {
+              if (loading) return <div>Loading...</div>;
+              if (error) return <div>Fetch error</div>;
+              _subscribeToNewPosts(subscribeToMore);
+              const { posts: { postList } } = data;            
+              return (
+                <div>
+                  {postList.map(item => {
+                    return <PostItem key={item.id} {...item} />
+                  })}
+                </div>
+              );
+            }}
+          </Query>
+        : <Query query={SEARCH_QUERY} variables={{ filter: search }}>
+            {({ loading, error, data }) => {
+              if (loading) return <div>Loading...</div>;
+              if (error) return <div>Fetch error</div>;
+              const { posts: { postList } } = data;
+            
+              return (
+                <div>
+                  {postList.map(item => {
+                    return <PostItem key={item.id} {...item} />
+                  })}
+                </div>
+              );
+            }}
+          </Query>
+      }
+      <PostForm />
     </Container>
   );
 };

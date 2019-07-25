@@ -55,8 +55,8 @@ type Post {
   id: ID!
   createdAt: DateTime!
   text: String!
-  postLikeCount: Int!
-  postDislikeCount: Int!
+  likeCount: Int!
+  dislikeCount: Int!
   replies(where: ReplyWhereInput, orderBy: ReplyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Reply!]
 }
 
@@ -69,8 +69,8 @@ type PostConnection {
 input PostCreateInput {
   id: ID
   text: String!
-  postLikeCount: Int
-  postDislikeCount: Int
+  likeCount: Int
+  dislikeCount: Int
   replies: ReplyCreateManyWithoutPostInput
 }
 
@@ -82,8 +82,8 @@ input PostCreateOneWithoutRepliesInput {
 input PostCreateWithoutRepliesInput {
   id: ID
   text: String!
-  postLikeCount: Int
-  postDislikeCount: Int
+  likeCount: Int
+  dislikeCount: Int
 }
 
 type PostEdge {
@@ -98,18 +98,18 @@ enum PostOrderByInput {
   createdAt_DESC
   text_ASC
   text_DESC
-  postLikeCount_ASC
-  postLikeCount_DESC
-  postDislikeCount_ASC
-  postDislikeCount_DESC
+  likeCount_ASC
+  likeCount_DESC
+  dislikeCount_ASC
+  dislikeCount_DESC
 }
 
 type PostPreviousValues {
   id: ID!
   createdAt: DateTime!
   text: String!
-  postLikeCount: Int!
-  postDislikeCount: Int!
+  likeCount: Int!
+  dislikeCount: Int!
 }
 
 type PostSubscriptionPayload {
@@ -132,15 +132,15 @@ input PostSubscriptionWhereInput {
 
 input PostUpdateInput {
   text: String
-  postLikeCount: Int
-  postDislikeCount: Int
+  likeCount: Int
+  dislikeCount: Int
   replies: ReplyUpdateManyWithoutPostInput
 }
 
 input PostUpdateManyMutationInput {
   text: String
-  postLikeCount: Int
-  postDislikeCount: Int
+  likeCount: Int
+  dislikeCount: Int
 }
 
 input PostUpdateOneRequiredWithoutRepliesInput {
@@ -152,8 +152,8 @@ input PostUpdateOneRequiredWithoutRepliesInput {
 
 input PostUpdateWithoutRepliesDataInput {
   text: String
-  postLikeCount: Int
-  postDislikeCount: Int
+  likeCount: Int
+  dislikeCount: Int
 }
 
 input PostUpsertWithoutRepliesInput {
@@ -198,22 +198,22 @@ input PostWhereInput {
   text_not_starts_with: String
   text_ends_with: String
   text_not_ends_with: String
-  postLikeCount: Int
-  postLikeCount_not: Int
-  postLikeCount_in: [Int!]
-  postLikeCount_not_in: [Int!]
-  postLikeCount_lt: Int
-  postLikeCount_lte: Int
-  postLikeCount_gt: Int
-  postLikeCount_gte: Int
-  postDislikeCount: Int
-  postDislikeCount_not: Int
-  postDislikeCount_in: [Int!]
-  postDislikeCount_not_in: [Int!]
-  postDislikeCount_lt: Int
-  postDislikeCount_lte: Int
-  postDislikeCount_gt: Int
-  postDislikeCount_gte: Int
+  likeCount: Int
+  likeCount_not: Int
+  likeCount_in: [Int!]
+  likeCount_not_in: [Int!]
+  likeCount_lt: Int
+  likeCount_lte: Int
+  likeCount_gt: Int
+  likeCount_gte: Int
+  dislikeCount: Int
+  dislikeCount_not: Int
+  dislikeCount_in: [Int!]
+  dislikeCount_not_in: [Int!]
+  dislikeCount_lt: Int
+  dislikeCount_lte: Int
+  dislikeCount_gt: Int
+  dislikeCount_gte: Int
   replies_every: ReplyWhereInput
   replies_some: ReplyWhereInput
   replies_none: ReplyWhereInput
@@ -240,8 +240,8 @@ type Reply {
   id: ID!
   createdAt: DateTime!
   text: String!
-  replyLikeCount: Int!
-  replyDislikeCount: Int!
+  likeCount: Int!
+  dislikeCount: Int!
   post: Post!
 }
 
@@ -254,8 +254,8 @@ type ReplyConnection {
 input ReplyCreateInput {
   id: ID
   text: String!
-  replyLikeCount: Int
-  replyDislikeCount: Int
+  likeCount: Int
+  dislikeCount: Int
   post: PostCreateOneWithoutRepliesInput!
 }
 
@@ -267,8 +267,8 @@ input ReplyCreateManyWithoutPostInput {
 input ReplyCreateWithoutPostInput {
   id: ID
   text: String!
-  replyLikeCount: Int
-  replyDislikeCount: Int
+  likeCount: Int
+  dislikeCount: Int
 }
 
 type ReplyEdge {
@@ -283,18 +283,18 @@ enum ReplyOrderByInput {
   createdAt_DESC
   text_ASC
   text_DESC
-  replyLikeCount_ASC
-  replyLikeCount_DESC
-  replyDislikeCount_ASC
-  replyDislikeCount_DESC
+  likeCount_ASC
+  likeCount_DESC
+  dislikeCount_ASC
+  dislikeCount_DESC
 }
 
 type ReplyPreviousValues {
   id: ID!
   createdAt: DateTime!
   text: String!
-  replyLikeCount: Int!
-  replyDislikeCount: Int!
+  likeCount: Int!
+  dislikeCount: Int!
 }
 
 input ReplyScalarWhereInput {
@@ -334,22 +334,22 @@ input ReplyScalarWhereInput {
   text_not_starts_with: String
   text_ends_with: String
   text_not_ends_with: String
-  replyLikeCount: Int
-  replyLikeCount_not: Int
-  replyLikeCount_in: [Int!]
-  replyLikeCount_not_in: [Int!]
-  replyLikeCount_lt: Int
-  replyLikeCount_lte: Int
-  replyLikeCount_gt: Int
-  replyLikeCount_gte: Int
-  replyDislikeCount: Int
-  replyDislikeCount_not: Int
-  replyDislikeCount_in: [Int!]
-  replyDislikeCount_not_in: [Int!]
-  replyDislikeCount_lt: Int
-  replyDislikeCount_lte: Int
-  replyDislikeCount_gt: Int
-  replyDislikeCount_gte: Int
+  likeCount: Int
+  likeCount_not: Int
+  likeCount_in: [Int!]
+  likeCount_not_in: [Int!]
+  likeCount_lt: Int
+  likeCount_lte: Int
+  likeCount_gt: Int
+  likeCount_gte: Int
+  dislikeCount: Int
+  dislikeCount_not: Int
+  dislikeCount_in: [Int!]
+  dislikeCount_not_in: [Int!]
+  dislikeCount_lt: Int
+  dislikeCount_lte: Int
+  dislikeCount_gt: Int
+  dislikeCount_gte: Int
   AND: [ReplyScalarWhereInput!]
   OR: [ReplyScalarWhereInput!]
   NOT: [ReplyScalarWhereInput!]
@@ -375,21 +375,21 @@ input ReplySubscriptionWhereInput {
 
 input ReplyUpdateInput {
   text: String
-  replyLikeCount: Int
-  replyDislikeCount: Int
+  likeCount: Int
+  dislikeCount: Int
   post: PostUpdateOneRequiredWithoutRepliesInput
 }
 
 input ReplyUpdateManyDataInput {
   text: String
-  replyLikeCount: Int
-  replyDislikeCount: Int
+  likeCount: Int
+  dislikeCount: Int
 }
 
 input ReplyUpdateManyMutationInput {
   text: String
-  replyLikeCount: Int
-  replyDislikeCount: Int
+  likeCount: Int
+  dislikeCount: Int
 }
 
 input ReplyUpdateManyWithoutPostInput {
@@ -411,8 +411,8 @@ input ReplyUpdateManyWithWhereNestedInput {
 
 input ReplyUpdateWithoutPostDataInput {
   text: String
-  replyLikeCount: Int
-  replyDislikeCount: Int
+  likeCount: Int
+  dislikeCount: Int
 }
 
 input ReplyUpdateWithWhereUniqueWithoutPostInput {
@@ -463,22 +463,22 @@ input ReplyWhereInput {
   text_not_starts_with: String
   text_ends_with: String
   text_not_ends_with: String
-  replyLikeCount: Int
-  replyLikeCount_not: Int
-  replyLikeCount_in: [Int!]
-  replyLikeCount_not_in: [Int!]
-  replyLikeCount_lt: Int
-  replyLikeCount_lte: Int
-  replyLikeCount_gt: Int
-  replyLikeCount_gte: Int
-  replyDislikeCount: Int
-  replyDislikeCount_not: Int
-  replyDislikeCount_in: [Int!]
-  replyDislikeCount_not_in: [Int!]
-  replyDislikeCount_lt: Int
-  replyDislikeCount_lte: Int
-  replyDislikeCount_gt: Int
-  replyDislikeCount_gte: Int
+  likeCount: Int
+  likeCount_not: Int
+  likeCount_in: [Int!]
+  likeCount_not_in: [Int!]
+  likeCount_lt: Int
+  likeCount_lte: Int
+  likeCount_gt: Int
+  likeCount_gte: Int
+  dislikeCount: Int
+  dislikeCount_not: Int
+  dislikeCount_in: [Int!]
+  dislikeCount_not_in: [Int!]
+  dislikeCount_lt: Int
+  dislikeCount_lte: Int
+  dislikeCount_gt: Int
+  dislikeCount_gte: Int
   post: PostWhereInput
   AND: [ReplyWhereInput!]
   OR: [ReplyWhereInput!]

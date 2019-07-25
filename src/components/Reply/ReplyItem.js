@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Label, Icon } from 'semantic-ui-react';
 
 const ReplyItem = props => {
-  const { text, replyLikeCount, replyDislikeCount } = props;
+  const { text, likeCount, dislikeCount } = props;
   return (
     <Card style={{width: '100%'}}>
       <Card.Content style={{padding: 0}}>
@@ -10,10 +10,10 @@ const ReplyItem = props => {
       </Card.Content>
       <Card.Content extra style={{padding: 0}}>
         <Label basic as="a" style={{border: 'none'}}>
-          <Icon name="thumbs up">{replyLikeCount}</Icon>
+          <Icon name="thumbs up">{likeCount}</Icon>
         </Label>
         <Label basic as="a" style={{border: 'none'}}>
-          <Icon name="thumbs down">{replyDislikeCount}</Icon>
+          <Icon name="thumbs down">{dislikeCount}</Icon>
         </Label>
       </Card.Content>
     </Card>

@@ -11,6 +11,7 @@ enum PostOrderByInput {
 type Mutation {
   postPost(text: String!): Post!
   postReply(postId: ID!, text: String!): Reply!
+  postLike(id: ID!, likeCount: Int!): Int!
 }
 
 type Posts {
@@ -21,8 +22,8 @@ type Post {
   id: ID!
   createdAt: String!
   text: String!
-  postLikeCount: Int!
-  postDislikeCount: Int!
+  likeCount: Int!
+  dislikeCount: Int!
   replies: [Reply]
 }
 
@@ -30,8 +31,8 @@ type Reply {
   id: ID!
   createdAt: String!
   text: String!
-  replyLikeCount: Int!
-  replyDislikeCount: Int!
+  likeCount: Int!
+  dislikeCount: Int!
   post: Post!
 }
 

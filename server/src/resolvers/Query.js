@@ -1,6 +1,6 @@
 async function posts(parent, args, context) {
   const where = args.filter ? {
-    text: args.filter
+    text_contains: args.filter
   } : {};
 
   const postList = await context.prisma.posts({

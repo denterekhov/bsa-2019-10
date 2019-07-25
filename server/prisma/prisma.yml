@@ -1,4 +1,5 @@
-endpoint: https://eu1.prisma.sh/dennterekhov-d2eb4c/feed/dev
+#endpoint: ''
+endpoint: https://eu1.prisma.sh/dennterekhov-d2eb4c/chat/dev
 
 datamodel: datamodel.prisma
 generate:

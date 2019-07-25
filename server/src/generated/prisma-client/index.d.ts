@@ -145,10 +145,10 @@ export type ReplyOrderByInput =
   | "createdAt_DESC"
   | "text_ASC"
   | "text_DESC"
-  | "replyLikeCount_ASC"
-  | "replyLikeCount_DESC"
-  | "replyDislikeCount_ASC"
-  | "replyDislikeCount_DESC";
+  | "likeCount_ASC"
+  | "likeCount_DESC"
+  | "dislikeCount_ASC"
+  | "dislikeCount_DESC";
 
 export type PostOrderByInput =
   | "id_ASC"
@@ -157,10 +157,10 @@ export type PostOrderByInput =
   | "createdAt_DESC"
   | "text_ASC"
   | "text_DESC"
-  | "postLikeCount_ASC"
-  | "postLikeCount_DESC"
-  | "postDislikeCount_ASC"
-  | "postDislikeCount_DESC";
+  | "likeCount_ASC"
+  | "likeCount_DESC"
+  | "dislikeCount_ASC"
+  | "dislikeCount_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
@@ -189,8 +189,8 @@ export type PostWhereUniqueInput = AtLeastOne<{
 export interface ReplyCreateInput {
   id?: ID_Input;
   text: String;
-  replyLikeCount?: Int;
-  replyDislikeCount?: Int;
+  likeCount?: Int;
+  dislikeCount?: Int;
   post: PostCreateOneWithoutRepliesInput;
 }
 
@@ -201,14 +201,14 @@ export interface ReplyUpdateManyWithWhereNestedInput {
 
 export interface PostUpdateManyMutationInput {
   text?: String;
-  postLikeCount?: Int;
-  postDislikeCount?: Int;
+  likeCount?: Int;
+  dislikeCount?: Int;
 }
 
 export interface ReplyUpdateWithoutPostDataInput {
   text?: String;
-  replyLikeCount?: Int;
-  replyDislikeCount?: Int;
+  likeCount?: Int;
+  dislikeCount?: Int;
 }
 
 export interface ReplySubscriptionWhereInput {
@@ -224,22 +224,22 @@ export interface ReplySubscriptionWhereInput {
 
 export interface ReplyUpdateManyMutationInput {
   text?: String;
-  replyLikeCount?: Int;
-  replyDislikeCount?: Int;
+  likeCount?: Int;
+  dislikeCount?: Int;
 }
 
 export interface PostCreateInput {
   id?: ID_Input;
   text: String;
-  postLikeCount?: Int;
-  postDislikeCount?: Int;
+  likeCount?: Int;
+  dislikeCount?: Int;
   replies?: ReplyCreateManyWithoutPostInput;
 }
 
 export interface PostUpdateWithoutRepliesDataInput {
   text?: String;
-  postLikeCount?: Int;
-  postDislikeCount?: Int;
+  likeCount?: Int;
+  dislikeCount?: Int;
 }
 
 export interface ReplyCreateManyWithoutPostInput {
@@ -249,16 +249,16 @@ export interface ReplyCreateManyWithoutPostInput {
 
 export interface ReplyUpdateInput {
   text?: String;
-  replyLikeCount?: Int;
-  replyDislikeCount?: Int;
+  likeCount?: Int;
+  dislikeCount?: Int;
   post?: PostUpdateOneRequiredWithoutRepliesInput;
 }
 
 export interface ReplyCreateWithoutPostInput {
   id?: ID_Input;
   text: String;
-  replyLikeCount?: Int;
-  replyDislikeCount?: Int;
+  likeCount?: Int;
+  dislikeCount?: Int;
 }
 
 export type ReplyWhereUniqueInput = AtLeastOne<{
@@ -267,8 +267,8 @@ export type ReplyWhereUniqueInput = AtLeastOne<{
 
 export interface PostUpdateInput {
   text?: String;
-  postLikeCount?: Int;
-  postDislikeCount?: Int;
+  likeCount?: Int;
+  dislikeCount?: Int;
   replies?: ReplyUpdateManyWithoutPostInput;
 }
 
@@ -309,22 +309,22 @@ export interface PostWhereInput {
   text_not_starts_with?: String;
   text_ends_with?: String;
   text_not_ends_with?: String;
-  postLikeCount?: Int;
-  postLikeCount_not?: Int;
-  postLikeCount_in?: Int[] | Int;
-  postLikeCount_not_in?: Int[] | Int;
-  postLikeCount_lt?: Int;
-  postLikeCount_lte?: Int;
-  postLikeCount_gt?: Int;
-  postLikeCount_gte?: Int;
-  postDislikeCount?: Int;
-  postDislikeCount_not?: Int;
-  postDislikeCount_in?: Int[] | Int;
-  postDislikeCount_not_in?: Int[] | Int;
-  postDislikeCount_lt?: Int;
-  postDislikeCount_lte?: Int;
-  postDislikeCount_gt?: Int;
-  postDislikeCount_gte?: Int;
+  likeCount?: Int;
+  likeCount_not?: Int;
+  likeCount_in?: Int[] | Int;
+  likeCount_not_in?: Int[] | Int;
+  likeCount_lt?: Int;
+  likeCount_lte?: Int;
+  likeCount_gt?: Int;
+  likeCount_gte?: Int;
+  dislikeCount?: Int;
+  dislikeCount_not?: Int;
+  dislikeCount_in?: Int[] | Int;
+  dislikeCount_not_in?: Int[] | Int;
+  dislikeCount_lt?: Int;
+  dislikeCount_lte?: Int;
+  dislikeCount_gt?: Int;
+  dislikeCount_gte?: Int;
   replies_every?: ReplyWhereInput;
   replies_some?: ReplyWhereInput;
   replies_none?: ReplyWhereInput;
@@ -335,8 +335,8 @@ export interface PostWhereInput {
 
 export interface ReplyUpdateManyDataInput {
   text?: String;
-  replyLikeCount?: Int;
-  replyDislikeCount?: Int;
+  likeCount?: Int;
+  dislikeCount?: Int;
 }
 
 export interface PostUpsertWithoutRepliesInput {
@@ -381,22 +381,22 @@ export interface ReplyScalarWhereInput {
   text_not_starts_with?: String;
   text_ends_with?: String;
   text_not_ends_with?: String;
-  replyLikeCount?: Int;
-  replyLikeCount_not?: Int;
-  replyLikeCount_in?: Int[] | Int;
-  replyLikeCount_not_in?: Int[] | Int;
-  replyLikeCount_lt?: Int;
-  replyLikeCount_lte?: Int;
-  replyLikeCount_gt?: Int;
-  replyLikeCount_gte?: Int;
-  replyDislikeCount?: Int;
-  replyDislikeCount_not?: Int;
-  replyDislikeCount_in?: Int[] | Int;
-  replyDislikeCount_not_in?: Int[] | Int;
-  replyDislikeCount_lt?: Int;
-  replyDislikeCount_lte?: Int;
-  replyDislikeCount_gt?: Int;
-  replyDislikeCount_gte?: Int;
+  likeCount?: Int;
+  likeCount_not?: Int;
+  likeCount_in?: Int[] | Int;
+  likeCount_not_in?: Int[] | Int;
+  likeCount_lt?: Int;
+  likeCount_lte?: Int;
+  likeCount_gt?: Int;
+  likeCount_gte?: Int;
+  dislikeCount?: Int;
+  dislikeCount_not?: Int;
+  dislikeCount_in?: Int[] | Int;
+  dislikeCount_not_in?: Int[] | Int;
+  dislikeCount_lt?: Int;
+  dislikeCount_lte?: Int;
+  dislikeCount_gt?: Int;
+  dislikeCount_gte?: Int;
   AND?: ReplyScalarWhereInput[] | ReplyScalarWhereInput;
   OR?: ReplyScalarWhereInput[] | ReplyScalarWhereInput;
   NOT?: ReplyScalarWhereInput[] | ReplyScalarWhereInput;
@@ -445,22 +445,22 @@ export interface ReplyWhereInput {
   text_not_starts_with?: String;
   text_ends_with?: String;
   text_not_ends_with?: String;
-  replyLikeCount?: Int;
-  replyLikeCount_not?: Int;
-  replyLikeCount_in?: Int[] | Int;
-  replyLikeCount_not_in?: Int[] | Int;
-  replyLikeCount_lt?: Int;
-  replyLikeCount_lte?: Int;
-  replyLikeCount_gt?: Int;
-  replyLikeCount_gte?: Int;
-  replyDislikeCount?: Int;
-  replyDislikeCount_not?: Int;
-  replyDislikeCount_in?: Int[] | Int;
-  replyDislikeCount_not_in?: Int[] | Int;
-  replyDislikeCount_lt?: Int;
-  replyDislikeCount_lte?: Int;
-  replyDislikeCount_gt?: Int;
-  replyDislikeCount_gte?: Int;
+  likeCount?: Int;
+  likeCount_not?: Int;
+  likeCount_in?: Int[] | Int;
+  likeCount_not_in?: Int[] | Int;
+  likeCount_lt?: Int;
+  likeCount_lte?: Int;
+  likeCount_gt?: Int;
+  likeCount_gte?: Int;
+  dislikeCount?: Int;
+  dislikeCount_not?: Int;
+  dislikeCount_in?: Int[] | Int;
+  dislikeCount_not_in?: Int[] | Int;
+  dislikeCount_lt?: Int;
+  dislikeCount_lte?: Int;
+  dislikeCount_gt?: Int;
+  dislikeCount_gte?: Int;
   post?: PostWhereInput;
   AND?: ReplyWhereInput[] | ReplyWhereInput;
   OR?: ReplyWhereInput[] | ReplyWhereInput;
@@ -498,8 +498,8 @@ export interface PostCreateOneWithoutRepliesInput {
 export interface PostCreateWithoutRepliesInput {
   id?: ID_Input;
   text: String;
-  postLikeCount?: Int;
-  postDislikeCount?: Int;
+  likeCount?: Int;
+  dislikeCount?: Int;
 }
 
 export interface NodeNode {
@@ -510,8 +510,8 @@ export interface ReplyPreviousValues {
   id: ID_Output;
   createdAt: DateTimeOutput;
   text: String;
-  replyLikeCount: Int;
-  replyDislikeCount: Int;
+  likeCount: Int;
+  dislikeCount: Int;
 }
 
 export interface ReplyPreviousValuesPromise
@@ -520,8 +520,8 @@ export interface ReplyPreviousValuesPromise
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   text: () => Promise<String>;
-  replyLikeCount: () => Promise<Int>;
-  replyDislikeCount: () => Promise<Int>;
+  likeCount: () => Promise<Int>;
+  dislikeCount: () => Promise<Int>;
 }
 
 export interface ReplyPreviousValuesSubscription
@@ -530,8 +530,8 @@ export interface ReplyPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   text: () => Promise<AsyncIterator<String>>;
-  replyLikeCount: () => Promise<AsyncIterator<Int>>;
-  replyDislikeCount: () => Promise<AsyncIterator<Int>>;
+  likeCount: () => Promise<AsyncIterator<Int>>;
+  dislikeCount: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface PostEdge {
@@ -555,16 +555,16 @@ export interface Post {
   id: ID_Output;
   createdAt: DateTimeOutput;
   text: String;
-  postLikeCount: Int;
-  postDislikeCount: Int;
+  likeCount: Int;
+  dislikeCount: Int;
 }
 
 export interface PostPromise extends Promise<Post>, Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   text: () => Promise<String>;
-  postLikeCount: () => Promise<Int>;
-  postDislikeCount: () => Promise<Int>;
+  likeCount: () => Promise<Int>;
+  dislikeCount: () => Promise<Int>;
   replies: <T = FragmentableArray<Reply>>(args?: {
     where?: ReplyWhereInput;
     orderBy?: ReplyOrderByInput;
@@ -582,8 +582,8 @@ export interface PostSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   text: () => Promise<AsyncIterator<String>>;
-  postLikeCount: () => Promise<AsyncIterator<Int>>;
-  postDislikeCount: () => Promise<AsyncIterator<Int>>;
+  likeCount: () => Promise<AsyncIterator<Int>>;
+  dislikeCount: () => Promise<AsyncIterator<Int>>;
   replies: <T = Promise<AsyncIterator<ReplySubscription>>>(args?: {
     where?: ReplyWhereInput;
     orderBy?: ReplyOrderByInput;
@@ -599,8 +599,8 @@ export interface PostPreviousValues {
   id: ID_Output;
   createdAt: DateTimeOutput;
   text: String;
-  postLikeCount: Int;
-  postDislikeCount: Int;
+  likeCount: Int;
+  dislikeCount: Int;
 }
 
 export interface PostPreviousValuesPromise
@@ -609,8 +609,8 @@ export interface PostPreviousValuesPromise
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   text: () => Promise<String>;
-  postLikeCount: () => Promise<Int>;
-  postDislikeCount: () => Promise<Int>;
+  likeCount: () => Promise<Int>;
+  dislikeCount: () => Promise<Int>;
 }
 
 export interface PostPreviousValuesSubscription
@@ -619,8 +619,8 @@ export interface PostPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   text: () => Promise<AsyncIterator<String>>;
-  postLikeCount: () => Promise<AsyncIterator<Int>>;
-  postDislikeCount: () => Promise<AsyncIterator<Int>>;
+  likeCount: () => Promise<AsyncIterator<Int>>;
+  dislikeCount: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface PageInfo {
@@ -675,16 +675,16 @@ export interface Reply {
   id: ID_Output;
   createdAt: DateTimeOutput;
   text: String;
-  replyLikeCount: Int;
-  replyDislikeCount: Int;
+  likeCount: Int;
+  dislikeCount: Int;
 }
 
 export interface ReplyPromise extends Promise<Reply>, Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   text: () => Promise<String>;
-  replyLikeCount: () => Promise<Int>;
-  replyDislikeCount: () => Promise<Int>;
+  likeCount: () => Promise<Int>;
+  dislikeCount: () => Promise<Int>;
   post: <T = PostPromise>() => T;
 }
 
@@ -694,8 +694,8 @@ export interface ReplySubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   text: () => Promise<AsyncIterator<String>>;
-  replyLikeCount: () => Promise<AsyncIterator<Int>>;
-  replyDislikeCount: () => Promise<AsyncIterator<Int>>;
+  likeCount: () => Promise<AsyncIterator<Int>>;
+  dislikeCount: () => Promise<AsyncIterator<Int>>;
   post: <T = PostSubscription>() => T;
 }
 
