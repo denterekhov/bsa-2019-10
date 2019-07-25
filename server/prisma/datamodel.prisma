@@ -1,0 +1,17 @@
+type Post {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  text: String!
+  postLikeCount: Int! @default(value: 0)
+  postDislikeCount: Int! @default(value: 0)
+  replies: [Reply]
+}
+
+type Reply {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  text: String!
+  replyLikeCount: Int! @default(value: 0)
+  replyDislikeCount: Int! @default(value: 0)
+  post: Post!
+}

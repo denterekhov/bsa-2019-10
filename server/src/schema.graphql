@@ -1,0 +1,41 @@
+type Query {
+  info: String!
+  posts(filter: String, skip: Int, first: Int, orderBy: PostOrderByInput): Posts!
+}
+
+enum PostOrderByInput {
+  createdAt_DESC
+  createdAt_ASC
+}
+
+type Mutation {
+  postPost(text: String!): Post!
+  postReply(postId: ID!, text: String!): Reply!
+}
+
+type Posts {
+  postList: [Post]
+}
+
+type Post {
+  id: ID!
+  createdAt: String!
+  text: String!
+  postLikeCount: Int!
+  postDislikeCount: Int!
+  replies: [Reply]
+}
+
+type Reply {
+  id: ID!
+  createdAt: String!
+  text: String!
+  replyLikeCount: Int!
+  replyDislikeCount: Int!
+  post: Post!
+}
+
+type Subscription {
+  newPost: Post
+  newReply: Reply
+}
