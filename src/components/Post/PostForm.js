@@ -6,7 +6,6 @@ import { Button, Form } from 'semantic-ui-react';
 import { POST_QUERY, POST_POST_MUTATION } from '../../queries';
 
 const PostForm = props => {
-  console.log('props: ', props);
   const [text, setText] = useState('');
 
   const _updateStoreAfterAddingPost = (store, newPost) => {

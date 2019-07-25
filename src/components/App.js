@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import { Query } from 'react-apollo';
-import { Container } from 'semantic-ui-react';
+import { Container, Input } from 'semantic-ui-react';
 
 import PostForm from './Post/PostForm';
 import PostItem from './Post/PostItem';
 import { POST_QUERY, NEW_POSTS_SUBSCRIPTION } from '../queries';
 
 const App = props => {
+  const [text, setText] = useState('');
   const orderBy = 'createdAt_DESC';
 
   const _subscribeToNewPosts = subscribeToMore => {
@@ -26,18 +27,25 @@ const App = props => {
     });
   };
 
+  const filterPosts = data => data.filter(post => {
+    return post.text.toLocaleLowerCase().includes(text.toLocaleLowerCase());
+  })
+
   return (
     <Container text>
+      <Input value={text} onChange={(e) => setText(e.target.value)} fluid/>
       <Query query={POST_QUERY} variables={{ orderBy }}>
         {({ loading, error, data, subscribeToMore }) => {
           if (loading) return <div>Loading...</div>;
           if (error) return <div>Fetch error</div>;
           _subscribeToNewPosts(subscribeToMore);
           const { posts: { postList } } = data;
+        
+          const filteredPosts = text ? filterPosts(postList) : postList;
 
           return (
             <div>
-              {postList.map(item => {
+              {filteredPosts.map(item => {
                 return <PostItem key={item.id} {...item} />
               })}
               <PostForm />
